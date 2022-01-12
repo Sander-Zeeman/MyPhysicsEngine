@@ -1,10 +1,9 @@
 #pragma once
 
-#include <cstdio>
+#include <SDL2/SDL.h>
 #include "World.h"
-
-#define OCCUPIED '#'
-#define FREE ' '
+#include "Objects/Types.h"
+#include "Objects/Square.h"
 
 class Viewer
 {
@@ -12,11 +11,14 @@ class Viewer
         Viewer(uint32_t width, uint32_t height);
         ~Viewer();
 
+        void resize(uint32_t n_width, uint32_t n_height);
+
+        void draw_square(Square s);
         void draw(World & world);
 
     private:
-        void merge_masks(bool *buffer, const bool *mask);
-        void draw_buffer(const bool *buffer);
+        SDL_Window *window { 0 };
+        SDL_Renderer *renderer { 0 };
 
         uint32_t m_width { 0 };
         uint32_t m_height { 0 };

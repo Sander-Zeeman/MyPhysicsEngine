@@ -1,3 +1,5 @@
 if (CMD)
     add_subdirectory(CMD)
+elseif(SDL)
+    add_subdirectory(SDL)
 endif()
